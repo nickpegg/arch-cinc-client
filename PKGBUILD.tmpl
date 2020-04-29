@@ -1,0 +1,31 @@
+# Maintainer: Nick Pegg <aur@nickpegg.com>
+
+pkgname=cinc-client
+pkgver={version}
+pkgrel=1
+_ubuntuver=xenial
+pkgdesc="A free-as-in-beer distribution of the open source software of Chef Software Inc."
+arch=('{arch}')
+url="https://downloads.cinc.sh/cinc/"
+license=('Apache')
+depends=()
+conflicts=( chef chef-solo chef-client )
+source=("{download_url}")
+sha256sums=('{sha256sum}')
+
+package() {{
+  cd "$srcdir"
+  tar -xf data.tar.xz -C "$pkgdir"
+
+  # link executables
+  binaries="chef-apply chef-shell knife chef-client chef-solo ohai"
+  binaries="$binaries cinc-apply cinc-shell cinc-client cinc-solo"
+
+  mkdir -p $pkgdir/usr/bin
+
+  for binary in $binaries; do
+    ln -s /opt/cinc/bin/$binary $pkgdir/usr/bin/ || error_exit "Cannot link $binary to /usr/bin"
+  done
+  chown -Rh 0:0 $pkgdir
+  chmod 755 $pkgdir/opt
+}}
