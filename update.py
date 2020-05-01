@@ -7,6 +7,7 @@ from their Omnitruck API.
 Requires Python 3.
 """
 
+import sys
 from urllib.request import urlopen
 
 
@@ -18,9 +19,14 @@ UBUNTU_VER = "20.04"
 
 
 def main():
-    url = f"https://omnitruck.cinc.sh/stable/cinc/metadata?v=latest&p=ubuntu&pv={UBUNTU_VER}&m={ARCH}"
+    if len(sys.argv) > 1:
+        version = sys.argv[1]
+    else:
+        version = "latest"
 
-    print("Fetching attributes from omnitruck.cinc.sh")
+    url = f"https://omnitruck.cinc.sh/stable/cinc/metadata?v={version}&p=ubuntu&pv={UBUNTU_VER}&m={ARCH}"
+
+    print(f"Fetching attributes from omnitruck.cinc.sh, version: {version}")
     with urlopen(url) as f:
         response = f.read()
 
