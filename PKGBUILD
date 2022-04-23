@@ -1,7 +1,7 @@
 # Maintainer: Nick Pegg <aur@nickpegg.com>
 
 pkgname=cinc-client
-pkgver=15.8.23
+pkgver=17.10.0
 pkgrel=1
 _ubuntuver=xenial
 pkgdesc="A free-as-in-beer distribution of the open source software of Chef Software Inc."
@@ -10,8 +10,8 @@ url="https://downloads.cinc.sh/cinc/"
 license=('Apache')
 depends=()
 conflicts=( chef chef-solo chef-client )
-source=("http://packages.cinc.sh/files/stable/cinc/15.8.23/ubuntu/18.04/cinc_15.8.23-1_amd64.deb")
-sha256sums=('b88e6867b547f0eca3ac2cb57f73458e4993122672dfc35e7a5563221aac2e84')
+source=("http://packages.cinc.sh/files/stable/cinc/17.10.0/ubuntu/20.04/cinc_17.10.0-1_amd64.deb")
+sha256sums=('79f3b62e1768f1deb0c505fc44fa5c180b0298605fcf3f6baafa0bb962924d12')
 
 package() {
   cd "$srcdir"
